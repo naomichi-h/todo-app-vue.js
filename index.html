@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo app</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <div id="app">
+    <h1 class="header">Todo app</h1>
+    <div class="content-width">
+      <form class="flex">
+        <input type="text" v-model="newItem" class="form-content" />
+        <button type="button" v-on:click="addItem" class="btn">+ Add</button>
+      </form>
+      <h1 class="content-title">Todos</h1>
+      <ul class="content-wrap">
+        <li v-for="(todo, index) in todos" class="content">
+          <input type="checkbox" v-model="todo.isDone" v-change="saveItem()" class="checkbox">
+          <span v-if="!todo.editflg" v-bind:class="{complete: todo.isDone}" v-on:click="editItemOn(index)"
+            class="content-text">{{todo.item}}</span>
+          <input v-else type="text" v-model="todo.item" v-on:blur="editItemOff(index)" v-focus>
+          <i class="fas fa-trash-alt icon-color" v-on:click="deleteItem(index)"></i>
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
