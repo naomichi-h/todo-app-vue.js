@@ -20,7 +20,7 @@ const app = new Vue({
     }
   },
   methods: {
-    addItem: function (e) {
+    addItem () {
       if (this.newItem === '') return
 
       const todo = {
@@ -33,20 +33,20 @@ const app = new Vue({
       this.newItem = ''
       this.saveItem()
     },
-    deleteItem: function (index) {
+    deleteItem (index) {
       this.todos.splice(index, 1)
       this.saveItem()
     },
-    editItemOn: function (index) {
+    editItemOn (index) {
       this.todos[index].editflg = true
     },
-    editItemOff: function (index) {
+    editItemOff (index) {
       this.todos[index].editflg = false
       this.saveItem()
     },
-    saveItem: function () {
-      const parsedTodos = JSON.stringify(this.todos)
-      localStorage.setItem(STORAGE_KEY, parsedTodos)
+    saveItem () {
+      const stringTodos = JSON.stringify(this.todos)
+      localStorage.setItem(STORAGE_KEY, stringTodos)
     }
   }
 })
